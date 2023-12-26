@@ -1,35 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Table, Switch} from 'antd';
-import form from 'react';
-import {Form} from 'antd';
-import { Select } from 'antd';
+import { Table, Switch } from 'antd';
+import { Form } from 'antd';
 
 const ProductTables = () => {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
-  const { Option } = Select;
-
-
-  const onCategoryChange = (value) => {
-    switch (value) {
-      case 'male':
-        form.setFieldsValue({
-          note: 'Hi, man!',
-        });
-        break;
-      case 'female':
-        form.setFieldsValue({
-          note: 'Hi, lady!',
-        });
-        break;
-      case 'other':
-        form.setFieldsValue({
-          note: 'Hi there!',
-        });
-        break;
-      default:
-    }
-  };
 
   const getCategories = async () => {
     try {
@@ -54,8 +29,7 @@ const ProductTables = () => {
 
   useEffect(() => {
     getProducts();
-    // getCategories();
-
+    getCategories();
   }, []);
 
   const columns = [
@@ -68,51 +42,20 @@ const ProductTables = () => {
       dataIndex: 'name',
     },
     {
-        title: 'Price',
-        dataIndex: 'price',
-      },
-      {
-        title: 'Stock',
-        dataIndex: 'stock',
-      },
+      title: 'Price',
+      dataIndex: 'price',
+    },
+    {
+      title: 'Stock',
+      dataIndex: 'stock',
+    },
     {
       title: 'Status',
       dataIndex: 'isStatus',
       render: (text) => (
-        <Switch
-          checked={text} 
-           
-        />
+        <Switch checked={text} />
       ),
     },
-    {
-        title: 'Category Id',
-        dataIndex: '',
-        render: () => (
-            <Form.Item
-            name="category"
-            label="Category"
-            rules={[
-              {
-                required: true,
-              },
-            ]}
-          >
-            <Select
-              placeholder="Select a category"    
-              onChange={getCategories}
-              allowClear
-            >
-              {categories.map((category) => (
-              <Option key={category.id} value={category.id}>
-                {category.name}
-              </Option>
-            ))}
-              
-            </Select>
-          </Form.Item>
-        )
-    }
   ];
 
   const onChange = (pagination, filters, sorter, extra) => {

@@ -1,12 +1,11 @@
 import React from "react";
-import { Form } from "antd";
 import ProductTables from "./ProductTables";
-import CategoryForm from "./CategoryForm";
+import ProductForm from "./ProductForm";
 
 const PageP = () => {
   return (
     <div>
-      <CategoryForm/>
+      <ProductForm/>
 
       <br/>
 
