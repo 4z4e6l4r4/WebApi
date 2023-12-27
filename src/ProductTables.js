@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { Table, Switch, Button, Select } from 'antd';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { Table, Switch, Button, Select } from "antd";
+import { Link } from "react-router-dom";
+
 
 const { Option } = Select;
 
@@ -36,36 +37,34 @@ const ProductTables = () => {
 
   const columns = [
     {
-        title: 'Id',
-        dataIndex: 'id',
-      },
-      {
-        title: 'Name',
-        dataIndex: 'name',
-      },
-      {
-        title: 'Price',
-        dataIndex: 'price',
-      },
-      {
-        title: 'Stock',
-        dataIndex: 'stock',
-      },
-      {
-        title: 'Status',
-        dataIndex: 'isStatus',
-        render: (text) => (
-          <Switch checked={text} />
-        ),
-      },
+      title: "Id",
+      dataIndex: "id",
+    },
+    {
+      title: "Name",
+      dataIndex: "name",
+    },
+    {
+      title: "Price",
+      dataIndex: "price",
+    },
+    {
+      title: "Stock",
+      dataIndex: "stock",
+    },
+    {
+      title: "Status",
+      dataIndex: "isStatus",
+      render: (text) => <Switch checked={text} />,
+    },
 
     {
-      title: 'Category Name',
-      dataIndex: 'categoryId',
+      title: "Category Name",
+      dataIndex: "categoryId",
       render: (categoryId, record) => (
         <Select
           value={categoryId}
-          style={{ width: '100%' }}
+          style={{ width: "100%" }}
           onChange={(value) => handleCategoryChange(record.id, value)}
         >
           {categories.map((category) => (
@@ -77,8 +76,8 @@ const ProductTables = () => {
       ),
     },
     {
-      title: 'Settings',
-      dataIndex: 'id',
+      title: "Settings",
+      dataIndex: "id",
       render: (id, record) => (
         <Button type="primary" onClick={() => handleEditClick(record)}>
           <Link to="/edit">Edit</Link>
@@ -93,16 +92,17 @@ const ProductTables = () => {
   };
 
   const handleCategoryChange = (productId, categoryId) => {
-    // Bu fonksiyonu kullanarak, seçilen kategori ID'sini uygun ürünle ilişkilendirebilirsiniz.
-    // API'ye güncelleme isteği gönderebilirsiniz.
-    console.log(`Product ID: ${productId}, Selected Category ID: ${categoryId}`);
+    console.log(
+      `Product ID: ${productId}, Selected Category ID: ${categoryId}`
+    );
   };
 
   const onChange = (pagination, filters, sorter, extra) => {
-    console.log('params', pagination, filters, sorter, extra);
+    console.log("params", pagination, filters, sorter, extra);
   };
 
-  return <Table columns={columns} dataSource={products} onChange={onChange} />;
+  return <Table  columns={columns} dataSource={products} onChange={onChange} />;
+
 };
 
 export default ProductTables;
